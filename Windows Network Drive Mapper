@@ -1,0 +1,38 @@
+
+'
+
+Private Sub CommandButton1_Click()
+mmmppp
+
+End Sub
+
+Private Sub UserForm_INITIALIZE()
+
+Me.cmba.List = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+
+
+End Sub
+
+
+Private Sub mmmppp()
+Dim dlett As String
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+Set objNetwork = CreateObject("Wscript.Network")
+
+dlett = Trim(Me.cmba.Value)
+dlett = dlett & ":"
+
+If (objFSO.DriveExists(dlett) = True) Then
+    objNetwork.RemoveNetworkDrive dlett, True, True
+End If
+
+objNetwork.MapNetworkDrive dlett, "\\PL1GVFS0011\AAA_Shared"
+
+MsgBox "\\PL1GVFS0011\AAA_Shared is now mapped to " & dlett
+
+Unload Me
+
+
+End Sub
+
+
